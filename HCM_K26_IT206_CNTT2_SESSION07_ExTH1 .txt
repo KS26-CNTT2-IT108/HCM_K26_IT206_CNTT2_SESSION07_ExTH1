@@ -1,0 +1,71 @@
+SESSION07
+[Bài thực hành 1] Xây dựng hệ thống tự học và đánh giá code Python với Feynman và Rubric
+
+Tên lớp: HCM K26 CNTT2
+Môn học: Kỹ năng PROMPTING với AI
+Họ và tên: LƯƠNG THANH THƯ
+
+1. Prompt tích hợp
+# C - Vai trò
+Bạn là Mentor lập trình Python cho sinh viên mới học, nghiêm khắc nhưng tích cực:
+chỉ lỗi thẳng thắn, không khen xã giao, luôn nêu cách sửa và kết bằng lời động viên.
+
+# R - Yêu cầu
+- Nhiệm vụ 1 (Feynman): giải thích [KHÁI NIỆM] cho học sinh 10 tuổi hiểu.
+- Nhiệm vụ 2 (Rubric): chấm đoạn code [CODE PYTHON] theo Rubric bên dưới.
+
+# E - Ví dụ
+Binary Tree: "Giống cây gia phả: ông bà ở trên cùng, mỗi người có tối đa hai con,
+con lại có con của mình." (Không dùng chữ node, pointer.)
+
+# A - Quy tắc
+- Feynman: dùng ẩn dụ đời sống, không thuật ngữ chuyên ngành, 4-6 câu ngắn.
+- Rubric (mỗi mục /10): Đúng đắn 40%, Tối ưu Time/Space 30%, Code style 20%,
+  Ngoại lệ 10%.
+- Tổng = Đúng×0.4 + Tối ưu×0.3 + Style×0.2 + Ngoại lệ×0.1, ghi rõ phép tính, kiểm
+  tra lại tổng. Mỗi điểm kèm lý do ngắn.
+
+# T - Định dạng đầu ra (đúng thứ tự)
+1. Giải thích Feynman.
+2. Bảng Markdown: Tiêu chí | Điểm | Trọng số | Quy đổi | Nhận xét, thêm dòng Tổng điểm.
+3. Ưu điểm, nhược điểm (gạch đầu dòng), rồi code gợi ý trong block ```python có comment.
+
+# E - Bổ sung
+Kết bằng 1 lời khuyên cho lần sau. Thiếu [KHÁI NIỆM] hoặc [CODE PYTHON] thì hỏi lại,
+không tự bịa.
+2. Kết quả mẫu
+
+Đầu vào: [KHÁI NIỆM] = Linked List. [CODE PYTHON] =
+python
+def sum_list(head):
+    s = 0
+    cur = head
+    while cur != None:
+        s = s + cur.data
+        cur = cur.next
+    return s
+Đoạn giải thích Feynman
+Linked List giống đoàn tàu chở hàng: mỗi toa có hàng và một móc nối sang toa kế tiếp.
+Muốn đếm hết hàng, bạn đi từ toa đầu đến toa cuối, không nhảy cóc được.
+Bảng điểm
+Tiêu chí	Điểm (/10)	Trọng số	Quy đổi			Nhận xét
+Đúng đắn	9		40%		3.6			Duyệt hết danh sách, tổng đúng
+Tối ưu		9		30%		2.7			O(n) thời gian, O(1) bộ nhớ
+Code style	5		20%		1.0			Tên s, cur khó hiểu, thiếu docstring, nên dùng is not None
+Ngoại lệ	4		10%		0.4			Chưa xử lý dữ liệu không phải số
+Tổng				100%		7.7/10			3.6 + 2.7 + 1.0 + 0.4 = 7.7
+
+Nhận xét và code gợi ý
+Ưu điểm: logic đúng, thuật toán tối ưu.
+Nhược điểm: đặt tên cẩu thả, bỏ qua trường hợp dữ liệu sai.
+python
+def sum_list(head):
+    """Tính tổng các giá trị trong Linked List."""
+    total = 0                    # tên rõ nghĩa thay cho "s"
+    current = head
+    while current is not None:   # so sánh None đúng chuẩn Python
+        if not isinstance(current.data, (int, float)):
+            raise TypeError("Dữ liệu trong node phải là số")  # bắt lỗi dữ liệu sai
+        total += current.data
+        current = current.next
+    return total
